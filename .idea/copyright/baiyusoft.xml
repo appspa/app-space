@@ -1,0 +1,6 @@
+<component name="CopyrightManager">
+  <copyright>
+    <option name="myName" value="baiyusoft" />
+    <option name="notice" value="*************************************************************  &#10;文件：&amp;#36;file.fileName  模块：&amp;#36;module.name  项目：&amp;#36;project.name  &#10;当前修改时间：&amp;#36;today.format(&quot;yyyy年MM月dd日 HH:mm:ss&quot;)  &#10;上次修改时间：&amp;#36;file.lastModified.format(&quot;yyyy年MM月dd日 HH:mm:ss&quot;)  &#10;作者：大路  &#10;Copyright (c) &amp;#36;today.year  &#10;*************************************************************  " />
+  </copyright>
+</component>

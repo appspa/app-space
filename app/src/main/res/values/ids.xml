@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="qmuidemo" type="id"/>
+    <item name="main_container" type="id"/>
+
+    <item name="empty_button" type="id"/>
+
+    <item name="topbar_right_about_button" type="id"/>
+    <item name="topbar_right_change_button" type="id"/>
+
+    <item name="layout_for_test" type="id"/>
+
+    <!--GroupList的ListItem项目关联Tag值-->
+    <item name="listitem_tag_1" type="id" />
+    <item name="listitem_tag_2" type="id" />
+    <item name="listitem_tag_3" type="id" />
+    <item name="listitem_tag_4" type="id" />
+    <item name="listitem_tag_5" type="id" />
+    <item name="listitem_tag_6" type="id" />
+    <item name="listitem_tag_7" type="id" />
+    <item name="listitem_tag_8" type="id" />
+    <item name="listitem_tag_9" type="id" />
+    <item name="listitem_tag_10" type="id" />
+    <item name="listitem_tag_11" type="id" />
+    <item name="listitem_tag_12" type="id" />
+    <item name="listitem_tag_13" type="id" />
+    <item name="listitem_tag_14" type="id" />
+    <item name="listitem_tag_15" type="id" />
+    <item name="listitem_tag_16" type="id" />
+    <item name="listitem_tag_17" type="id" />
+    <item name="listitem_tag_18" type="id" />
+    <item name="listitem_tag_19" type="id" />
+    <item name="listitem_tag_20" type="id" />
+</resources>
