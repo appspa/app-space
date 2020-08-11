@@ -51,6 +51,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat"
     //注释编译
     implementation "com.jakewharton:butterknife:$butterknife"
+    implementation project(path: ':sekiro-lib')
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife"
     //Xposed框架
     compileOnly 'de.robv.android.xposed:api:82'
