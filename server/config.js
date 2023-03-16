@@ -29,8 +29,8 @@ const config = {
   emailPort: process.env.APP_SPA_EMAIL_PORT || '587',
 
   allowRegister: boolConfig(process.env.APP_SPA_ALLOW_REGISTER || 'false'), //是否允许用户注册,为否则后端注册接口不可用
-  adminAccount:'admin',
-  adminPassword:'app@space',
+  adminAccount: process.env.APP_SPA_ADMIN_ACCOUNT || 'admin',
+  adminPassword: process.env.APP_SPA_ADMIN_PASSWORD || 'app@space',
 
   openLdap: boolConfig(process.env.APP_SPA_ALLOW_LDAP || 'false'), //是否开启ldap 默认是false 如果公司没有ldap服务可以不用理会
   ldapServer: process.env.APP_SPA_LDAP_URL || '', //ldap server url

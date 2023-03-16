@@ -17,6 +17,6 @@ WORKDIR /app/server
 ADD server /app/server
 RUN npm install
 
-EXPOSE 80/tcp
+EXPOSE 8081/tcp
 
 ENTRYPOINT ["/app/docker/docker-entrypoint.sh"]

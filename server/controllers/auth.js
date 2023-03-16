@@ -116,8 +116,12 @@ module.exports = class AuthRouter {
     @tag
     static async register(ctx, next) {
         let { body } = ctx.request;
-        if (!config.allowRegister && ctx.state.user.data.permission != 'root') {
-            throw new Error("不允许注册用户,联系管理员.");
+        if (!config.allowRegister ) {
+            if (ctx.state.user && ctx.state.user.data && ctx.state.user.data.permission == 'root') {
+                //管理员可以注册
+            }else {
+                throw new Error("不允许注册用户,联系管理员.");
+            }
         }
         body.password = await bcrypt.hash(body.password, 10) // 10是 hash加密的级别, 默认是10，数字越大加密级别越高
         let user = await User.find({ username: body.username });

@@ -19,7 +19,7 @@ services:
       context: ../
       dockerfile: Dockerfile
 #      dockerfile: docker/Dockerfile
-#    image: ghcr.io/treexi/app-space:latest
+#    image: ghcr.io/appspa/app-space:latest
     container_name: app_space_server
     env_file: .env
     ports:
@@ -40,10 +40,10 @@ services:
      container_name: app-space-nginx
      ports:
        - "80:80"
-#     links:
-#      - server
-#     depends_on:
-#      - server
+     links:
+      - server
+     depends_on:
+      - server
      networks:
         - server-net
 
