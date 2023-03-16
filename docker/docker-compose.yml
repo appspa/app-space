@@ -1,0 +1,58 @@
+version: '1'
+services:
+
+  mongo:
+    container_name: app_space_mongo
+    image: mongo
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - app-space-db:/data/db
+#      - /opt/mongo_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - server-net
+
+  server:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+#      dockerfile: docker/Dockerfile
+#    image: ghcr.io/treexi/app-space:latest
+    container_name: app_space_server
+    env_file: .env
+    ports:
+      - "8085:8085"
+    volumes:
+      - app-space-storage:/app/data/storage
+#    depends_on:
+#      - mongo
+    links:
+      - mongo
+    networks:
+      - server-net
+
+  nginx:
+     build:
+       context: ../
+       dockerfile: docker/nginx/Dockerfile
+     container_name: app-space-nginx
+     ports:
+       - "80:80"
+#     links:
+#      - server
+#     depends_on:
+#      - server
+     networks:
+        - server-net
+
+networks:
+  server-net:
+    driver:
+      bridge
+
+volumes:
+  app-space-storage:
+  app-space-db:
+

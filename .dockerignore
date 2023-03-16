@@ -1,0 +1,14 @@
+
+.idea/
+client/node_modules/
+client/public/
+client/src/
+client/static/
+
+server/node_modules/
+server/.vscode/
+
+
+data/
+db/
+wiki/

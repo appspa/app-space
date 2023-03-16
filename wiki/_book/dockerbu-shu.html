@@ -1,0 +1,331 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>部署(Docker) · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="install.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="shi-yong-shuo-ming.html">
+            
+                <a href="shi-yong-shuo-ming.html">
+            
+                    
+                    使用说明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="install.html">
+            
+                <a href="install.html">
+            
+                    
+                    部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="dockerbu-shu.html">
+            
+                <a href="dockerbu-shu.html">
+            
+                    
+                    部署(Docker)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >部署(Docker)</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="docker-&#x90E8;&#x7F72;&#x8BF4;&#x660E;&#x6587;&#x6863;">Docker &#x90E8;&#x7F72;&#x8BF4;&#x660E;&#x6587;&#x6863;</h1>
+<ul>
+<li>&#x5B89;&#x88C5;docker</li>
+</ul>
+<p><a href="https://docs.docker.com/docker-for-mac/" target="_blank">https://docs.docker.com/docker-for-mac/</a></p>
+<ul>
+<li>&#x83B7;&#x53D6;&#x516C;&#x5171;&#x955C;&#x50CF;</li>
+</ul>
+<pre><code>&#x67E5;&#x770B;&#x672C;&#x5730;&#x955C;&#x50CF;&#xFF1A;docker image ls
+&#x4ECE;&#x516C;&#x5171;&#x4ED3;&#x5E93;&#x83B7;&#x53D6;&#x955C;&#x50CF;: docker pull [&#x955C;&#x50CF;]
+docker pull mongo
+docker pull node
+</code></pre><ul>
+<li>&#x6784;&#x5EFA;&#x955C;&#x50CF;</li>
+</ul>
+<pre><code>&#x5728;&#x9879;&#x76EE;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x521B;&#x5EFA;Dockerfile&#x6587;&#x4EF6;
+Dockerfile &#x6307;&#x4EE4;
+
+&#x6307;&#x5B9A;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;
+WORKDIR &lt;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#x8DEF;&#x5F84;&gt;
+
+&#x5C06;&#x9879;&#x76EE;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x590D;&#x5236;&#x5230;&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#x4E0B;
+COPY package.json /usr/src/app/
+
+&#x542F;&#x52A8;&#x5BB9;&#x5668;&#x5B89;&#x88C5;&#x4F9D;&#x8D56;
+RUN npm install
+
+&#x66B4;&#x9732;&#x7AEF;&#x53E3;
+EXPOSE 3008
+
+&#x5BB9;&#x5668;&#x542F;&#x52A8;&#x547D;&#x4EE4;
+CMD [ &quot;npm&quot;, &quot;start&quot; ]
+</code></pre><ul>
+<li>compose &#x9879;&#x76EE;</li>
+</ul>
+<p>&#x53C2;&#x8003;&#x6587;&#x6863;:<a href="https://yeasy.gitbooks.io/docker_practice/content/compose/compose_file.html" target="_blank">https://yeasy.gitbooks.io/docker_practice/content/compose/compose_file.html</a></p>
+<pre><code>&#x6784;&#x5EFA;yml&#x6587;&#x4EF6;
+&#x8BBE;&#x7F6E;&#x5BB9;&#x5668;&#x4FE1;&#x606F;
+
+services:
+  app:
+    container_name: app
+    restart: always
+    build: .
+    ports:
+      - &quot;3008:3008&quot;
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./helper:/helper/db
+    ports:
+      - &quot;27017:27017&quot;
+</code></pre><ul>
+<li><p>&#x6267;&#x884C; docker-compose up &#x542F;&#x52A8;server_app&#x955C;&#x50CF;&#x7684;&#x5BB9;&#x5668;&#x3002;</p>
+</li>
+<li><p>&#x901A;&#x8FC7;localhost:3008&#x8BBF;&#x95EE;server</p>
+</li>
+<li><p>&#x5220;&#x9664;&#x672C;&#x5730;&#x955C;&#x50CF;</p>
+</li>
+</ul>
+<pre><code>docker image rm [&#x9009;&#x9879;] &lt;&#x955C;&#x50CF;1&gt; &lt;&#x955C;&#x50CF;2&gt; ...
+docker image rm server_app
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="install.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 部署">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"部署(Docker)","level":"1.4","depth":1,"previous":{"title":"部署","level":"1.3","depth":1,"path":"install.md","ref":"install.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dockerbu-shu.md","mtime":"2018-05-16T08:32:13.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-17T03:13:26.564Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

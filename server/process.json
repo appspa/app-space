@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "app-space",
+      "script": "index.js",
+      "watch": true,
+      "exec_interpreter": "babel-node",
+      "log_date_format": "YYYY - MM - DD HH: mm Z"
+    }
+  ]
+}
