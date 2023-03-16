@@ -1,0 +1,25 @@
+.DS_Store
+node_modules/
+#/dist/
+#/public/
+#/src/
+#/static/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+Dockerfile1
+Dockerfile2
+Dockerfile3
+nginx/Dockerfile1
+nginx/Dockerfile2
+nginx/nginx1.conf
+nginx/nginx2.conf
