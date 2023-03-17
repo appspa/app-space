@@ -12,6 +12,7 @@
   </div>
 </div>
 
+
 ![AppSpace Showcase](https://github.com/appspa/appspa.github.io/blob/main/static/img/app_distribute.png)
 
 [//]: # (## 特性)
@@ -25,7 +26,7 @@
 [MIT][mit-link]
 
 
-[app-space-ios-sdk]: https://github.com/tryzealot/app-space-ios-sdk
-[app-space-android-sdk]: https://github.com/tryzealot/app-space-android-sdk
+[app-space-ios-sdk]: https://github.com/appspa/app-space-ios-sdk
+[app-space-android-sdk]: https://github.com/appspa/app-space-android-sdk
 [fastlane-plugin-app-space]: https://github.com/appspa/fastlane-plugin-app-space
 [mit-link]: https://github.com/appspa/app-space/blob/develop/CHANGELOG.md
