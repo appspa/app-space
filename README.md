@@ -1,9 +1,9 @@
 <div align='center'>
 
-  <h1>App-Space</h1>
+  <h1>AppSpace</h1>
 
   <h4>
-    私有化部署服务,集成应用分发 Bug管理 提供iOS、Android、Flutter、React-Native SDK，支持自动化部署jenkins fastlane等丰富组件 🖖
+    私有化部署服务,集成应用分发 Bug管理 提供iOS、Android、Flutter、React-Native SDK，支持自动化部署jenkins fastlane等丰富组件 
   </h4>
 
   <div>
