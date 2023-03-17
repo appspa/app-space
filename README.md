@@ -3,7 +3,7 @@
   <h1>App-Space</h1>
 
   <h4>
-    开源自部署持续集成一切跟应用有关事情，接入任意 CI 系统一切自动化处理，企业多年实战经验，独立部署提供企业打包分发流程、上传应用全套流程方案 En Taro Adun! 🖖
+    私有化部署服务,集成应用分发 Bug管理 提供iOS、Android、Flutter、React-Native SDK，支持自动化部署jenkins fastlane等丰富组件 🖖
   </h4>
 
   <div>
