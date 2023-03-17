@@ -22,6 +22,8 @@
 
 [//]: # ()
 [//]: # (## 发布协议)
+## 联系作者
+![AppSpace Author](https://github.com/appspa/appspa.github.io/blob/main/static/img/qq.png)
 
 [MIT][mit-link]
 
