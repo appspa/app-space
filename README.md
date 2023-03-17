@@ -23,7 +23,9 @@
 [//]: # ()
 [//]: # (## 发布协议)
 ## 联系作者
-![AppSpace Author](https://github.com/appspa/appspa.github.io/blob/main/static/img/qq.png)
+QQ:1206149686
+
+<img src="https://github.com/appspa/appspa.github.io/blob/main/static/img/qq.png" height=140/>
 
 [MIT][mit-link]
 
