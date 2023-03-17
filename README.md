@@ -12,14 +12,15 @@
   </div>
 </div>
 
-![AppSpace Showcase](https://github.com/appspa/appspa.github.io/blob/main/static/img/app_home.png)
 ![AppSpace Showcase](https://github.com/appspa/appspa.github.io/blob/main/static/img/app_distribute.png)
 
-## 特性
+[//]: # (## 特性)
 
-## 在线演示
+[//]: # ()
+[//]: # (## 在线演示)
 
-## 发布协议
+[//]: # ()
+[//]: # (## 发布协议)
 
 [MIT][mit-link]
 
