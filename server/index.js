@@ -69,7 +69,7 @@ let middleware = koajwt({ secret: config.secret, debug: true }).unless({
         '/api/user/resetPassword',
         '/api/swagger',
         '/api/swagger.json',
-        // /\/v0.1\/public\/.+/,
+        /\/api\/v0.1\/public\/.+/,
         /\/api\/plist\/.+/,
         /\/api\/count\/.+/,
         /\/api\/app\/.+/

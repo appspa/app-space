@@ -12,10 +12,12 @@
   </div>
 </div>
 
+## 功能列表
+
 
 ![AppSpace Showcase](https://github.com/appspa/appspa.github.io/blob/main/static/img/app_distribute.png)
 
-[//]: # (## 特性)
+
 
 [//]: # ()
 [//]: # (## 在线演示)
@@ -25,7 +27,7 @@
 ## 联系作者
 QQ:1206149686
 
-<img src="https://github.com/appspa/appspa.github.io/blob/main/static/img/qq.png" height=140/>
+<img src="https://github.com/appspa/appspa.github.io/blob/main/static/img/qq.png" height=120/>
 
 [MIT][mit-link]
 
