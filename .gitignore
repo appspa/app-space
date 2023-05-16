@@ -8,7 +8,5 @@
 /build
 /captures
 .externalNativeBuild
-/db
-/data
 Dockerfile1
 Dockerfile2
