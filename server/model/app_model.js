@@ -66,6 +66,7 @@ const appSchema = new Schema({
         count: {type: Number, default: 0}
     },
     label_id: Number,
+    diffNum: {type: Number, default: 0},
     last_app_version_id: String,
     showHistory: { //是否展示历史版本
         type: Boolean,

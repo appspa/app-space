@@ -1,5 +1,5 @@
 # 启动mongo
-mongod --dbpath /Users//Desktop/work/code-trace/appspa/db
+mongod --dbpath /Users//Desktop/work/code-trace/spa/app-space/db
 # 查看连接
 mongo
 

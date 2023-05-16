@@ -127,6 +127,23 @@ export default class common {
         return `itms-services://?action=download-manifest&url=${config.baseUrl}/api/plist/${appId}/${versionId}`;
     }
 
+    static createEmptyFile (filePath) {
+        return new Promise((resolve, reject) => {
+            log.debug(`createEmptyFile Create file ${filePath}`);
+            return common.deleteFolder(filePath)
+                .then((data) => {
+                    fsextra.mkdir(filePath, (err) => {
+                        if (err) {
+                            log.error(err);
+                            reject(new AppError.AppError(err.message));
+                        } else {
+                            resolve(filePath);
+                        }
+                    });
+                });
+        });
+    };
+
     static createEmptyFolder (folderPath) {
         return new Promise((resolve, reject) => {
             log.debug(`createEmptyFolder Create dir ${folderPath}`);
@@ -258,7 +275,7 @@ export default class common {
                   let stream = fs.createWriteStream(filePath);
                   response.pipe(stream);
                   stream.on('close', function () {
-                    resolve(null);
+                    resolve(filePath);
                   });
                   stream.on('error', function (error) {
                     reject(error)
@@ -570,11 +587,11 @@ export default class common {
                   Body: data,
                   ACL: 'public-read',
               }, (err, response) => {
-                  log.debug('response.err',err,response.ETag);
+                  log.debug('response.err',err);
                   if (err) {
                       reject(new AppError.AppError(JSON.stringify(err)));
                   } else {
-                      resolve(response.ETag);
+                      resolve("response.ETag");
                   }
 
               });

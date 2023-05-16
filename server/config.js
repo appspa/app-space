@@ -5,12 +5,12 @@ let path = require('path');
 
 
 const config = {
-  baseUrl: process.env.APP_SPA_DOMAIN || "http://127.0.0.1:80", //baseUrl应用请求的url地址,比如https://appspace
-  port: process.env.APP_SPA_PORT || '80', //server运行的端口
-  // baseUrl: process.env.APP_SPA_DOMAIN || "http://127.0.0.1:8085", //baseUrl应用请求的url地址,比如https://appspace
-  // port: process.env.APP_SPA_PORT || '8085', //server运行的端口
+  // baseUrl: process.env.APP_SPA_DOMAIN || "http://127.0.0.1:80", //baseUrl应用请求的url地址,比如https://appspace
+  // port: process.env.APP_SPA_PORT || '80', //server运行的端口
+  baseUrl: process.env.APP_SPA_DOMAIN || "http://127.0.0.1:8081", //baseUrl应用请求的url地址,比如https://appspace
+  port: process.env.APP_SPA_PORT || '8081', //server运行的端口
 
-  iosPlistSource: 'api', //[api,yun] api通过接口获取 yun通过云盘接口获取（前提有云盘存储） 解决ios本地无https接口 用云盘方案
+  iosPlistSource: 'yun', //[api,yun] api通过接口获取 yun通过云盘接口获取（前提有云盘存储） 解决ios本地无https接口 用云盘方案
   //解决局域网iOS https证书 临时体验用
   iosInstallUrl: "https://127.0.0.1:443",//undefined
   // iosInstallPort: "443",//undefined
@@ -38,13 +38,14 @@ const config = {
   ldapBindCredentials: process.env.APP_SPA_LDAP_CREDENTIALS || '', //ldap管理员密码
   ldapBase: process.env.APP_SPA_LDAP_BASE || '', //ldap base
 
-  storageType: process.env.STORAGE_TYPE || 'local',//"s3",
+  storageType: process.env.STORAGE_TYPE || 's3',//"s3",
   storageDir: process.env.STORAGE_DIR || '/data/storage',//path.join(__dirname, '../docker/storage'),
 
   // Config for local storage when storageType value is "local".
   local: {
     // downloadUrl
-    downloadUrl: process.env.APP_SPA_DOMAIN || "",
+    // downloadUrl: process.env.APP_SPA_DOMAIN || "http://10.151.100.79:80",
+    downloadUrl: process.env.APP_SPA_DOMAIN || "http://192.168.1.10:8085",
   },
   // Config for qiniu (http://www.qiniu.com/) cloud storage when storageType value is "qiniu".
   qiniu: {
@@ -64,12 +65,12 @@ const config = {
 
   // Config for Amazon s3 (https://aws.amazon.com/cn/s3/) storage when storageType value is "s3".
   s3: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID || 'AKIA27FODKFXJAI7XK7J',
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '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',
     sessionToken: process.env.AWS_SESSION_TOKEN || '', //(optional)
-    bucketName: process.env.AWS_BUCKET_NAME || '',
-    region: process.env.AWS_REGION || '',
-    downloadUrl: process.env.AWS_DOWNLOAD_URL||'', // binary files download host address.
+    bucketName: process.env.AWS_BUCKET_NAME || 'hk-trust',
+    region: process.env.AWS_REGION || 'ap-east-1',
+    downloadUrl: process.env.AWS_DOWNLOAD_URL||'https://hk-trust.s3.ap-east-1.amazonaws.com', // binary files download host address.
   },
   // Config for tencentyun COS (https://cloud.tencent.com/product/cos) when storageType value is "oss".
   tencentcloud: {

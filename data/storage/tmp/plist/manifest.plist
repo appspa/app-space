@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>assets</key>
+			<array>
+				<dict>
+					<key>kind</key>
+					<string>software-package</string>
+					<key>url</key>
+          <string>https://hk-trust.s3.ap-east-1.amazonaws.com/642a7eb6bf33e7ad98d8bfa2/ios/iDacU/com.huobisec.mepal_0.0.5_118.ipa</string>
+					<key>md5-size</key>
+          <integer>32532716</integer>
+        </dict>
+         <dict>
+             <key>kind</key>
+             <string>display-image</string>
+             <!-- optional. indicates if icon needs shine effect applied. -->
+             <key>needs-shine</key>
+             <true/>
+             <key>url</key>
+             <string>https://hk-trust.s3.ap-east-1.amazonaws.com/642a7eb6bf33e7ad98d8bfa2/icon/com.huobisec.mepal_0.0.5_118.png</string>
+        </dict>
+			</array>
+			<key>metadata</key>
+			<dict>
+				<key>bundle-identifier</key>
+				<string>com.huobisec.mepal</string>
+				<key>bundle-version</key>
+				<string>0.0.5</string>
+				<key>kind</key>
+				<string>software</string>
+				<key>title</key>
+				<string>MePal</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

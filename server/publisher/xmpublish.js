@@ -4,21 +4,21 @@ import crypto from 'crypto'
 import fs from 'fs'
 import path from 'path'
 
-// const appinfo = {"appName": "mi发布", 
-//                  "packageName": 
-//                  "com.evozi.injector", 
+// const appinfo = {"appName": "mi发布",
+//                  "packageName":
+//                  "com.evozi.injector",
 //                  "publisherNaaame": "",
-//                  "versionName": "", 
-//                  "category": 1, 
-//                  "keyWords":"mi", 
-//                  "desc": "mi", 
+//                  "versionName": "",
+//                  "category": 1,
+//                  "keyWords":"mi",
+//                  "desc": "mi",
 //                  "updateDesc": "mi"}
-// const param = ['dzq1993@qq.com', 
-//                '2fpfgpgcmrxhm12taietf2z71sokwqgxmpiya5xm169f3ks2kd', 
-//                0, 
-//                '../uploaded/apk/com.evozi.injector.apk', 
-//                "../uploaded/icon/icon.png", 
-//                 appinfo, 
+// const param = ['dzq1993@qq.com',
+//                '2fpfgpgcmrxhm12taietf2z71sokwqgxmpiya5xm169f3ks2kd',
+//                0,
+//                '../uploaded/apk/com.evozi.injector.apk',
+//                "../uploaded/icon/icon.png",
+//                 appinfo,
 //                 ["../uploaded/icon/screenshot1.png",
 //                 "../uploaded/icon/screenshot2.png",
 //                 "../uploaded/icon/screenshot3.png"]]
@@ -32,12 +32,12 @@ var request = req
 
 // const KEY_ALGORITHM = 'RSA/NONE/PKCS1Padding'
 
-// RSA最大加密明文大小 
+// RSA最大加密明文大小
 var MAX_ENCRYPT_BLOCK = 117;
 
 const miapiURL = 'http://api.developer.xiaomi.com/devupload'
 
-// // RSA最大解密密文大小 
+// // RSA最大解密密文大小
 // var MAX_DECRYPT_BLOCK = 128;
 
 export default class XMPublish {
@@ -74,7 +74,7 @@ export default class XMPublish {
       url: (miapiURL+'/dev/query'),
       form: formParams
     }
-  
+
     return new Promise ((resolve, reject) => {
       request(param, (error, response, body) => {
         if (error) {
@@ -89,13 +89,13 @@ export default class XMPublish {
   }
 
   /**
-   * 
+   *
    * @param {String} email 开发者email
    * @param {String} password 访问密码
    * @param {Number} synchroType 0：新增;1：更新;2：信息修改
    * @param {String} apkFile apk 路径
    * @param {String} iconFile icon 路径
-   * @param appInfo 应该信息 
+   * @param appInfo 应该信息
    *                {"appName": "mi发布",   // 应用名称  必选
                      "packageName": "com.evozi.injector"，// 包名      必选
                      "publisherName": "",  // 开发者名称  可选 默认使用开发者站注册的名称
@@ -182,7 +182,7 @@ export default class XMPublish {
   }
 
   /**
-   * 
+   *
    * @param {String} value 需要MD5的字符串
    */
   static md5(value) {
@@ -190,20 +190,20 @@ export default class XMPublish {
   }
 
   /**
-   * 
+   *
    * @param {String} file 需要md5的文件
    */
   static md5file(file) {
-    var buffer = fs.readFileSync(file)
-    var hash = crypto.createHash('md5')
+    let buffer = fs.readFileSync(file)
+    let hash = crypto.createHash('md5')
     hash.update(buffer)
-    var md5 = hash.digest('hex')
+    let md5 = hash.digest('hex')
     console.log("文件的MD5是：%s", md5)
     return md5
   }
 
   /**
-   * 
+   *
    * @param {String} cerFile 公钥路径
    */
   static getPublicKey() {
@@ -212,7 +212,7 @@ export default class XMPublish {
   }
 
   /**
-   * 
+   *
    * @param str 需要别加密的字符串
    * @param publicKey 公钥
    */

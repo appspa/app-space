@@ -117,6 +117,35 @@ module.exports = class AuthRouter {
     static async register(ctx, next) {
         let { body } = ctx.request;
         if (!config.allowRegister ) {
+            console.log("ctx.state",ctx.state)
+            if (ctx.state.user && ctx.state.user.data && ctx.state.user.data.permission == 'root') {
+                //管理员可以注册
+            }else {
+                throw new Error("不允许注册用户,联系管理员.");
+            }
+        }
+        body.password = await bcrypt.hash(body.password, 10) // 10是 hash加密的级别, 默认是10，数字越大加密级别越高
+        let user = await User.find({ username: body.username });
+        if (!user.length) {
+            let newUser = new User(body);
+
+            let task = Fawn.Task();
+            let result = await task
+                .save(newUser)
+                .run({ useMongoose: true });
+            ctx.body = responseWrapper(newUser)
+        } else {
+            throw new Error("用户已存在")
+        }
+    }
+    @request('post', '/api/user/registerByAdmin')
+    @summary('注册用户')
+    @body(registerSchema)
+    @tag
+    static async registerByAdmin(ctx, next) {
+        let { body } = ctx.request;
+        if (!config.allowRegister ) {
+            console.log("ctx.state",ctx.state)
             if (ctx.state.user && ctx.state.user.data && ctx.state.user.data.permission == 'root') {
                 //管理员可以注册
             }else {

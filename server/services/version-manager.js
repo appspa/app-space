@@ -11,6 +11,9 @@ import config from "../config";
 import _ from "lodash";
 import fpath from "path";
 import mustache from "mustache";
+import models from "../model";
+import BSDiff from 'bsdiff-nodejs';
+import {AppError} from "../utils/app-error";
 const log = log4js.getLogger("cps:PackageManager");
 let storageDir = common.getStorageDir()
 export default class VersionManager{
@@ -57,7 +60,7 @@ export default class VersionManager{
     }
 
     static async releaseRnVersions(userInfo, appInfo, versionInfo) {
-        let {appId, appVersion,active, grayScaleSize, platform, changeLog, updateMode, file} = versionInfo;
+        let {appId, appVersion,active, grayScaleSize,grayScaleLimit, platform, changeLog, updateMode, file} = versionInfo;
         log.debug('file = ', file)
         // let versions = common.validatorVersion(appVersion);
         // log.debug("versions",versions)
@@ -92,6 +95,7 @@ export default class VersionManager{
                     downloadCount: 0,
                     appLevel: '',
                     grayScaleSize: grayScaleSize,
+                    grayScaleLimit:grayScaleLimit,
                     changeLog: changeLog,
                     // minVersion: versions [0],
                     // maxVersion: versions[1],
@@ -111,7 +115,7 @@ export default class VersionManager{
     };
 
     static async releaseAppVersions(userInfo, appInfo, versionInfo) {
-        let {appId,active, grayScaleSize, platform, changeLog, updateMode, file} = versionInfo;
+        let {appId,active, grayScaleSize,grayScaleLimit, platform, changeLog, updateMode, file} = versionInfo;
         log.debug('file = ', file)
         let filePath = file.path;
         return Promise.all([
@@ -177,6 +181,7 @@ export default class VersionManager{
                         downloadCount: 0,
                         appLevel: packageInfo.appLevel,
                         grayScaleSize: grayScaleSize,
+                        grayScaleLimit: grayScaleLimit,
                         changeLog: changeLog,
                         minVersion: 0,
                         maxVersion: 0,
@@ -205,7 +210,14 @@ export default class VersionManager{
                             }),
                             version.save()
                         ]
-                    ).then(() => version);
+                    ).then(() => {
+                        // console.log('createDiffVersionsByLastNums...',appInfo.diffNum);
+                        // if (versionInfo.platform == 'android' && appInfo.diffNum > 0) {
+                        //     console.log('createDiffVersionsByLastNums... diffNum start');
+                        //     this.createDiffVersionsByLastNums(appId, version, appInfo.diffNum);
+                        // }
+                       return version
+                    });
                 })
             });
         }).finally(() => {
@@ -213,5 +225,90 @@ export default class VersionManager{
         });
     };
 
+    static createDiffVersionsByLastNums(appId, originalVersion, num) {
+        return Promise.all([
+            models.Version.find({
+                appId: appId,
+                versionCode: {'$lt': originalVersion.versionCode}
+            }).limit(num)
+        ]).spread((lastNumsVersions)=>{
+            console.debug('createDiffVersionsByLastNums... lastNumsVersions=',lastNumsVersions);
+            return this.createDiffVersions(originalVersion,lastNumsVersions)
+        });
+    }
+
+    static createDiffVersions(originalVersion, destVersions) {
+        if (!_.isArray(destVersions)) {
+            return Promise.reject(new AppError('第二个参数必须是数组'));
+        }
+
+        if (destVersions.length <= 0) {
+            return null;
+        }
+        let diffDir = path.join(storageDir, 'tmp/diff/' + security.randToken(4));
+        log.debug('diffDir',diffDir)
+        let originalName = originalVersion.downloadPath.substring(originalVersion.downloadPath.lastIndexOf('/'))
+        return common.createEmptyFolder(diffDir)
+            .then(() => this.downloadVersionAndExtract(diffDir, originalVersion.downloadUrl, originalName))
+            .then(originalFile => Promise.map(destVersions,v =>{
+                log.debug('destVersions',v)
+                let filename = v.downloadPath.substring(v.downloadPath.lastIndexOf('/'))
+                return this.downloadVersionAndExtract(diffDir, v.downloadUrl,filename)
+                    .then(oldVersionFile =>
+                        this.generateOneDiffVersion(diffDir, originalVersion, originalFile, v, oldVersionFile)
+                    );
+            }))
+            // .finally(() => common.deleteFolderSync(diffDir));
+
+    }
+
+    static generateOneDiffVersion(workDirectoryPath, originalVersion, originalFile, oldVersion, oldVersionFile) {
+        log.debug('generateOneDiffVersion originalFile= ', originalFile)
+        log.debug('generateOneDiffVersion oldVersionFile= ', oldVersionFile)
+        let diffTmpFile = path.join(workDirectoryPath, originalVersion.versionName + "_" + oldVersion.versionName + "_" + oldVersion._id + ".patch");
+        let diffPathKey = originalVersion.downloadPath.substring(0, originalVersion.downloadPath.lastIndexOf('/') + 1) + path.basename(diffTmpFile);
+
+        return BSDiff.diff(oldVersionFile, originalFile, diffTmpFile, (result => {
+            // log.debug('diffFile result', result);
+            if (result != 100) {
+
+            } else {
+                return security.fileSha256(diffTmpFile).then((diffHash) =>
+                    common.uploadFileToStorage(diffPathKey, diffTmpFile).then(() => {
+                        let stats = fs.statSync(diffTmpFile);
+                        let downloadUrl = common.getBlobDownloadUrl(diffPathKey);
+                        let label = originalVersion.versionCode + "_" + oldVersion.versionCode;
+                        let patchInfo = {
+                            patchId: label+"_" + oldVersion._id,
+                            label: label,
+                            md5: diffHash,
+                            sMd5: oldVersion.packageHash,
+                            tMd5: originalVersion.packageHash,
+                            size: stats.size,
+                            downloadPath: diffPathKey,
+                            downloadUrl: downloadUrl,
+                            tip: "本次更新大小" + stats.size + "byte",
+                        };
+                        return Models.Version.findById(originalVersion._id).then(
+                            version => {
+                                if (!version.patchList) {
+                                    version.patchList = [];
+                                }
+                                version.patchList.push(patchInfo)
+                                return Models.Version.updateOne({_id: originalVersion._id}, {
+                                        patchList: version.patchList,
+                                    }
+                                );
+                            }
+                        )
+                    })
+                )
+            }
+        }))
+    }
+
+    static downloadVersionAndExtract(workDirectoryPath,blobUrl,fileName ) {
+        return common.createFileFromRequest(blobUrl, path.join(workDirectoryPath, fileName));
+    }
 }
 

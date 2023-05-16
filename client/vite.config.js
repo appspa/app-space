@@ -46,31 +46,31 @@ export default defineConfig(({command, mode,ssrBuild}) => {
       'process.env': process.env,
     },
     build: {
-      // target: 'es2015',
-      // minify: 'terser', // 是否进行压缩,boolean | 'terser' | 'esbuild',默认使用terser
-      // manifest: false, // 是否产出maifest.json
-      // sourcemap: false, // 是否产出soucemap.json
-      // outDir: 'dist', // 产出目录
-      // rollupOptions: {
-      //   output: {
-      //     chunkFileNames: 'static/js/[name]-[hash].js',
-      //     entryFileNames: 'static/js/[name]-[hash].js',
-      //     assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
-      //     manualChunks: {
-      //       // elementPlus: ['element-plus'],
-      //       vue: ['vue'],
-      //       vueRouter: ['vue-router']
-      //     }
-      //     // manualChunks(id) {
-      //     //   console.log(id)
-      //     //   return ''
-      //     //   // 将pinia的全局库实例打包进vendor，避免和页面一起打包造成资源重复引入
-      //     //   // if (id.includes(path.resolve(__dirname, '/src/store/index.ts'))) {
-      //     //   //   return 'vendor'
-      //     //   // }
-      //     // }
-      //   }
-      // },
+      target: 'es2015',
+      minify: 'terser', // 是否进行压缩,boolean | 'terser' | 'esbuild',默认使用terser
+      manifest: false, // 是否产出maifest.json
+      sourcemap: false, // 是否产出soucemap.json
+      outDir: 'dist', // 产出目录
+      rollupOptions: {
+        output: {
+          chunkFileNames: 'static/js/[name]-[hash].js',
+          entryFileNames: 'static/js/[name]-[hash].js',
+          assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+          manualChunks: {
+            // elementPlus: ['element-plus'],
+            vue: ['vue'],
+            vueRouter: ['vue-router']
+          }
+          // manualChunks(id) {
+          //   console.log(id)
+          //   return ''
+          //   // 将pinia的全局库实例打包进vendor，避免和页面一起打包造成资源重复引入
+          //   // if (id.includes(path.resolve(__dirname, '/src/store/index.ts'))) {
+          //   //   return 'vendor'
+          //   // }
+          // }
+        }
+      },
       chunkSizeWarningLimit: 1000,
     },
     esbuild,

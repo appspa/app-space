@@ -1,0 +1,1 @@
+import{q as r}from"./index-8ea49c21.js";function e(e){return r("api/user/register",e)}function s(e){return r("api/user/login",e)}function n(e){return r("api/user/resetPassword",e)}export{n as a,s as l,e as r};
