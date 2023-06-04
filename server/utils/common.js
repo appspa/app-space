@@ -55,6 +55,7 @@ export default class common {
         }
     }
     static parseIpa(filePath) {
+        console.log('parseIpa = ',filePath)
         const parser = new AppInfoParser(filePath);
         return new Promise((resolve, reject) => {
             parser.parse().then(result => {
@@ -82,8 +83,10 @@ export default class common {
                     // reject("应用未签名,暂不支持")
                 }
                 resolve(info);
+            }).catch(err => {
+                console.log('err ----> ', err)
+                reject(err);
             });
-
         });
     }
 
@@ -117,6 +120,7 @@ export default class common {
                 resolve(info);
             }).catch(err => {
                 console.log('err ----> ', err);
+                reject(err);
             });
         });
     }

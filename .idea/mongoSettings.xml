@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MongoConfiguration">
+    <option name="serverConfigurations">
+      <set>
+        <ServerConfiguration>
+          <option name="label" value="ss" />
+          <option name="password" value="bWHy6ZBakeOx0oMV3fGt" />
+          <option name="serverUrls">
+            <list>
+              <option value="containers-us-west-181.railway.app:6106" />
+            </list>
+          </option>
+          <option name="shellWorkingDir" value="null" />
+          <option name="sshTunnelingConfiguration">
+            <SshTunnelingConfiguration />
+          </option>
+          <option name="username" value="mongo" />
+        </ServerConfiguration>
+      </set>
+    </option>
+  </component>
+</project>
