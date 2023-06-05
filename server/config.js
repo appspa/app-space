@@ -39,7 +39,7 @@ const config = {
   ldapBindCredentials: process.env.APP_SPA_LDAP_CREDENTIALS || '', //ldap管理员密码
   ldapBase: process.env.APP_SPA_LDAP_BASE || '', //ldap base
 
-  storageType: process.env.STORAGE_TYPE || 's3',//"s3",
+  storageType: process.env.STORAGE_TYPE || 's3', //"s3",
   storageDir: process.env.STORAGE_DIR || '/data/storage',//path.join(__dirname, '../docker/storage'),
 
   // Config for local storage when storageType value is "local".
