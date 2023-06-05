@@ -18,7 +18,7 @@ const config = {
   apiPrefix: 'api',
   secret: process.env.APP_SPA_SECRET || 'secret', //secret
   dbUser: process.env.APP_SPA_DBUSER || 'mongo', //数据库用户 (没有开启mongodb用户认证的可以不填写)
-  dbPass: process.env.APP_SPA_DBPWD || 'bWHy6ZBakeOx0oMV3fGt', //数据库密码 (没有开启mongodb用户认证的可以不填写)
+  dbPass: process.env.APP_SPA_DBPWD || 'bWHy6ZBakeOx0oMV3fG', //数据库密码 (没有开启mongodb用户认证的可以不填写)
   dbName: process.env.APP_SPA_DB_NAME || 'app_space',//'app_space', //数据库名称
   dbHost: process.env.APP_SPA_DB_HOST ||'containers-us-west-181.railway.app',// 'mongo',// '127.0.0.1', //数据库地址
 
@@ -39,7 +39,7 @@ const config = {
   ldapBindCredentials: process.env.APP_SPA_LDAP_CREDENTIALS || '', //ldap管理员密码
   ldapBase: process.env.APP_SPA_LDAP_BASE || '', //ldap base
 
-  storageType: process.env.STORAGE_TYPE || 's3', //"s3",
+  storageType: process.env.STORAGE_TYPE || 'local', //"s3",
   storageDir: process.env.STORAGE_DIR || '/data/storage',//path.join(__dirname, '../docker/storage'),
 
   // Config for local storage when storageType value is "local".
@@ -66,12 +66,12 @@ const config = {
 
   // Config for Amazon s3 (https://aws.amazon.com/cn/s3/) storage when storageType value is "s3".
   s3: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID || 'AKIA27FODKFXJAI7XK7J',
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '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',
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
     sessionToken: process.env.AWS_SESSION_TOKEN || '', //(optional)
-    bucketName: process.env.AWS_BUCKET_NAME || 'hk-trust',
-    region: process.env.AWS_REGION || 'ap-east-1',
-    downloadUrl: process.env.AWS_DOWNLOAD_URL||'https://hk-trust.s3.ap-east-1.amazonaws.com', // binary files download host address.
+    bucketName: process.env.AWS_BUCKET_NAME || 't',
+    region: process.env.AWS_REGION || '',
+    downloadUrl: process.env.AWS_DOWNLOAD_URL||'', // binary files download host address.
   },
   // Config for tencentyun COS (https://cloud.tencent.com/product/cos) when storageType value is "oss".
   tencentcloud: {
