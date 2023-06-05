@@ -13,7 +13,7 @@ const config = {
 
   iosPlistSource: 'api', //[api,yun] api通过接口获取 yun通过云盘接口获取（前提有云盘存储） 解决ios本地无https接口 用云盘方案
   //解决局域网iOS https证书 临时体验用
-  iosInstallUrl:undefined, // "https://127.0.0.1:443",//undefined
+  iosInstallUrl: undefined, // "https://127.0.0.1:443",//undefined
   // iosInstallPort: "443",//undefined
   apiPrefix: 'api',
   secret: process.env.APP_SPA_SECRET || 'secret', //secret
