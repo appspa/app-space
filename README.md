@@ -25,7 +25,7 @@
 ![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_6.png)
 ### 应用设置
 ![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_4.png)
-git### 发布应用
+### 发布应用
 ![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_5.png)
 ### 团队管理
 ![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_3.png)
