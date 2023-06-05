@@ -20,15 +20,21 @@ const versionSchema = new Schema({
     downloadCount: {type: Number, default: 0},
     appLevel: String,
     changeLog: String,
-    grayScaleLimit:Boolean,
+    grayScaleLimit: {type: Boolean, default: false},
     grayScaleSize:Number,
     minVersion:String,
     maxVersion:String,
     hidden: {type: Boolean, default: false},
     updateMode: {type: String, default: 'normal', enum: ['silent', 'normal', 'force']},
+    isIgnorable: {type: Boolean, default: false},
+    patchEnable: {type: Boolean, default: false},
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    patchList:{
+        type: Array,
+        default: []
     },
     uploadAt: {
         type: Date,

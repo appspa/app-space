@@ -12,9 +12,15 @@
     <a href="https://github.com/appspa/app-space-docker">docker部署</a> •
   </div>
 </div>
+## 在线演示
 
+> **注意**: 演示服务使用免费资源部署，资源额度耗尽会不可访问次月初重置；数据每日都会重新初始化，不对用户上传的应用承担任何法律风险，后果自负！(翻墙)
+
+- 演示地址：https://app-space.up.railway.app
+- 登录账户: `admin`
+- 登录密码：`app@space`
+- 
 ## 功能列表
-
 
 ![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_6.png)
 ### 应用设置
@@ -28,6 +34,21 @@
 ### 钉钉机器人
 ![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_1.png)
 
+<<<<<<< HEAD
+![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_6.png)
+### 应用设置
+![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_4.png)
+### 发布应用
+![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_5.png)
+### 团队管理
+![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_3.png)
+### 应用下载
+![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_2.png)
+### 钉钉机器人
+![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_1.png)
+
+=======
+>>>>>>> patch
 # 源代碼部署
 
 

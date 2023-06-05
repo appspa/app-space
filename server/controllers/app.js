@@ -19,6 +19,7 @@ import _ from 'lodash'
 import models from  '../model'
 import verify from "../utils/verify";
 import common from "../utils/common";
+import {md5} from "request/lib/helpers";
 
 const tag = tags(['AppsResource']);
 
@@ -221,7 +222,8 @@ module.exports = class AppRouter {
         'installPwd': 'string', //应用安装的密码
         'autoPublish': 'boolean', //新版本自动发布
         'showHistory': 'boolean',//显示历史版本
-        'mergeAppId': 'string' //关联应用
+        'mergeAppId': 'string', //关联应用
+        'diffNum': Number //关联应用
     })
     @path({ appId: { type: 'string', required: true } })
     static async setAppProfile(ctx, next) {
@@ -229,9 +231,9 @@ module.exports = class AppRouter {
         let {appId} = ctx.validatedParams;
         let appInfo =  await verify.checkApp(appId)
         await verify.checkRole(uid, appId, 'manager')
-        let {shortUrl, installWithPwd, appName,installPwd, autoPublish,showHistory,mergeAppId} = ctx.request.body;
+        let {shortUrl,diffNum, installWithPwd, appName,installPwd, autoPublish,showHistory,mergeAppId} = ctx.request.body;
         console.log('mergeAppId=', mergeAppId);
-        await models.App.findByIdAndUpdate(appId, { shortUrl,appName,installWithPwd,installPwd ,autoPublish,showHistory,mergeAppId})
+        await models.App.findByIdAndUpdate(appId, { diffNum,shortUrl,appName,installWithPwd,installPwd ,autoPublish,showHistory,mergeAppId})
         if (mergeAppId) {
             await models.App.findByIdAndUpdate(mergeAppId, { mergeAppId:appId})
         }else if(appInfo.mergeAppId){
@@ -248,6 +250,8 @@ module.exports = class AppRouter {
         'changeLog': { type: 'string', require: false,description:'更新描述' },
         'appVersion': { type: 'string', require: false, description: 'RN支持版本' },
         'active':{ type: 'bool', require: false,default:false, description: '是否激活'},
+        'patchEnable':{ type: 'bool', require: false,default:false, description: '增量是否激活'},
+        'isIgnorable':{ type: 'bool', require: false,default:false, description: '是否可忽略'},
         'grayScaleLimit':{ type: 'bool', require: false, description: '是否灰度' },
         'grayScaleSize':{ type: 'number', default: 0, require: false, description: '灰度上限'},
         'updateMode': { type: 'string', default: 'normal', enum: ['silent', 'normal', 'force'],description:'更新模式' }
@@ -301,10 +305,17 @@ module.exports = class AppRouter {
         appId: String,
         currentVersionCode: String,
     })
+    @query(
+        {
+            appId: {type: 'string', default: '', require: true,description: 'appId'},
+            currentVersionCode: {type: 'number', require: true,default: 0, description: '当前版本'},
+            currentMd5: {type: 'string', default: '',require: false, description: '当前md5(差量更新使用)'},
+        })
     static async checkUpdate(ctx, next) {
-        let {appId, currentVersionCode} = ctx.validatedParams;
+        let appId = ctx.query.appId
         await verify.checkApp(appId)
-
+        let currentVersionCode = ctx.query.currentVersionCode
+        let currentMd5 = ctx.query.currentMd5
         let tempVersion = {};
         //正常
         let version = await models.Version.findOne({
@@ -312,7 +323,7 @@ module.exports = class AppRouter {
             active: true,
             grayScaleLimit: false,
             versionCode: {'$gt': currentVersionCode}
-        }).sort({'versionCode':-1});
+        }).sort({'versionCode': -1});
 
         //灰度版本
         let grayVersion = await models.Version.findOne({
@@ -324,7 +335,7 @@ module.exports = class AppRouter {
                     '$gte': ['$grayScaleSize', '$downloadCount']
                 }
             }
-        ).sort({'versionCode':-1});
+        ).sort({'versionCode': -1});
 
         if (grayVersion && version) {
             if (version.versionCode > grayVersion.versionCode) {
@@ -367,10 +378,30 @@ module.exports = class AppRouter {
             tempVersion.updateMode = 'force';
         }
 
+        let patchInfo;
+        if (tempVersion.patchEnable && tempVersion.patchList && tempVersion.patchList.length > 0) {
+            patchInfo = tempVersion.patchList.find(v => {
+                return (v.patchId.indexOf("_" + currentVersionCode + "_") > -1) && v.sMd5 == currentMd5;
+            })
+        }
+
         if (!tempVersion) {
             ctx.body = responseWrapper(false, "您已经是最新版本了");
         } else {
-            ctx.body = responseWrapper(tempVersion);
+            ctx.body = responseWrapper({
+                hasUpdate: true,
+                isForce: tempVersion.updateMode == 'force',
+                isIgnorable: tempVersion.isIgnorable,
+                isSilent: tempVersion.updateMode == 'silent',
+                md5: tempVersion.packageHash,
+                versionCode: tempVersion.versionCode,
+                versionName: tempVersion.versionName,
+                changeLog: tempVersion.changeLog,
+                downloadUrl: tempVersion.downloadUrl,
+                installUrl: tempVersion.installUrl,
+                size: tempVersion.size,
+                patchInfo: patchInfo,
+            });
         }
 
     }

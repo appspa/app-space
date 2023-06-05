@@ -13,10 +13,10 @@ function getEtag(buffer,callback){
 
 	// sha1算法
 	let sha1 = function(content){
-		var crypto = require('crypto');
-		var sha1 = crypto.createHash('sha1');
+		let crypto = require('crypto');
+		let sha1 = crypto.createHash('md5');
 		sha1.update(content);
-		return sha1.digest();
+		return sha1.digest('hex');
 	};
 
 	// 以4M为单位分割
@@ -30,7 +30,7 @@ function getEtag(buffer,callback){
 			let bufferSize = buffer.length;
 			blockCount = Math.ceil(bufferSize / blockSize);
 
-			for(var i=0;i<blockCount;i++){
+			for(let i=0;i<blockCount;i++){
 				sha1String.push(sha1(buffer.slice(i*blockSize,(i+1)*blockSize)));
 			}
 			process.nextTick(function(){

@@ -42,7 +42,7 @@ security.parseToken = function(token) {
 security.fileSha256 = function (file) {
   return new Promise((resolve, reject) => {
     let rs = fs.createReadStream(file);
-    let hash = crypto.createHash('sha256');
+    let hash = crypto.createHash('md5');
     rs.on('data', hash.update.bind(hash));
     rs.on('error', (e) => {
       reject(e);
@@ -54,7 +54,7 @@ security.fileSha256 = function (file) {
 }
 
 security.stringSha256Sync = function (contents) {
-  let sha256 = crypto.createHash('sha256');
+  let sha256 = crypto.createHash('md5');
   sha256.update(contents);
   return sha256.digest('hex');
 }

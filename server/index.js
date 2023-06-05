@@ -113,6 +113,16 @@ if (config.iosInstallUrl) {
 AuthRouter.initAdminAccount().then(r => {
     // console.log('初始化用户完成...')
 })
-export default app.listen(config.port, () => {
-    console.log(`App is listening on ${config.port}.`);
-});
+let appServer
+if (config.host) {
+    log.debug("start app host:",config.host);
+    appServer = app.listen(config.port, config.host,() => {
+        console.log(`App is listening on ${config.port}.`);
+    });
+}else {
+    log.debug("start app port:",config.port);
+    appServer  = app.listen(config.port,() => {
+        console.log(`App is listening on ${config.port}.`);
+    });
+}
+export default appServer;
