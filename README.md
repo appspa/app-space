@@ -19,7 +19,7 @@
 - 演示地址：https://app-space.up.railway.app
 - 登录账户: `admin`
 - 登录密码：`app@space`
-- 
+
 ## 功能列表
 
 ![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_6.png)
