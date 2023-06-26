@@ -34,21 +34,6 @@
 ### 钉钉机器人
 ![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_1.png)
 
-<<<<<<< HEAD
-![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_6.png)
-### 应用设置
-![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_4.png)
-### 发布应用
-![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_5.png)
-### 团队管理
-![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_3.png)
-### 应用下载
-![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_2.png)
-### 钉钉机器人
-![AppSpace home](https://github.com/appspa/appspa.github.io/blob/main/static/img/img_1.png)
-
-=======
->>>>>>> patch
 # 源代碼部署
 
 
